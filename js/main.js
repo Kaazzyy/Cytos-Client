@@ -43,12 +43,11 @@
         if (require == null) {
             const attempts = +location.hash.substring(1) || 0;
 
-            // Page loaded too fast.
-            if (attempts < 5) {
-                location.hash = ++attempts;
-                setTimeout(() => location.reload());
-                return;
-            }
+        if (attempts < 10) { // aumente o limite
+            location.hash = ++attempts;
+            setTimeout(() => location.reload(), 1000); // tempo maior
+        return;
+    }
 
             requireFoundPromise(false);
 
