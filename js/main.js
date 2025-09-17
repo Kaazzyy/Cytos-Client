@@ -8,3 +8,4 @@ sprite.x = 400;
 sprite.y = 300;
 sprite.anchor.set(0.5);
 app.stage.addChild(sprite);
+
