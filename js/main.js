@@ -43,16 +43,17 @@
         if (require == null) {
             const attempts = +location.hash.substring(1) || 0;
 
-        if (attempts < 10) { // aumente o limite
-            location.hash = ++attempts;
-            setTimeout(() => location.reload(), 1000); // tempo maior
-        return;
-    }
+            // Page loaded muito rápido, tentar até 10 vezes com delay maior.
+            if (attempts < 10) {
+                location.hash = ++attempts;
+                setTimeout(() => location.reload(), 1500);
+                return;
+            }
 
             requireFoundPromise(false);
 
             location.hash = '';
-            return void onError('Retry attempts reached\r\nPlease hard refresh by pressing Ctrl + Shift + R or Cmd + Shift + R');
+            return void onError('Limite de tentativas atingido.\r\nPor favor, faça um hard refresh pressionando Ctrl + Shift + R ou Cmd + Shift + R');
         }
 
         global.__webpack_require__ = require;
